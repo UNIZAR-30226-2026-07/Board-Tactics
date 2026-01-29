@@ -1,0 +1,59 @@
+services:
+  # BASE DE DATOS (PostgreSQL 16)
+  postgres:
+    image: postgres:16-alpine
+    container_name: tge_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER:-admin}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-admin123}
+      POSTGRES_DB: ${DB_NAME:-tactical_engine_db}
+    ports:
+      - "5432:5432" # Expuesto para conectar desde IntelliJ/DBeaver
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d tactical_engine_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # BACKEND (Spring Boot 3)
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: tge_backend
+    restart: on-failure
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8080:8080" # API REST & WebSockets
+      - "5005:5005" # Puerto Debug (Java)
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/tactical_engine_db
+      SPRING_DATASOURCE_USERNAME: ${DB_USER:-admin}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:-admin123}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    volumes:
+      - ./backend:/app
+      - ~/.m2:/root/.m2
+
+  # FRONTEND
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: tge_frontend
+    restart: always
+    ports:
+      - "5173:5173" # Puerto estándar Vite
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      VITE_API_URL: http://localhost:8080/api/v1
+
+volumes:
+  postgres_data:
