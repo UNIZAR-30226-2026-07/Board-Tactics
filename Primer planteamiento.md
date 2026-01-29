@@ -10,10 +10,10 @@ Cada jugador puede emplazar sus unidades en una zona inicial determinada (1º it
 
 Durante su turno, cada jugador dispondra de una cierta cantidad de combustible, acumulable entre rondas, que pueden utilizar para mover (trasladando o rotando) sus unidades
 
-- Primera iteracion, solo depende de la posicion inicial, direccion y obstaculos
-- Segunda iteracion, pathfinding esquivando islas
+- **Primera iteracion, solo depende de la posicion inicial, direccion y obstaculos**
+- **Segunda iteracion, pathfinding esquivando islas**
 
-Durante su turno, cada jugador dispondra de una cierta cantidad de municion, no acumulable entre rondas, que pueden utilizar para atacar con cada tipo de arma (1º iteracion)
+*Durante su turno, cada jugador dispondra de una cierta cantidad de municion, no acumulable entre rondas, que pueden utilizar para atacar con cada tipo de arma (1º iteracion)*
 
 Cada tipo de barco/clase de barco tiene caracteristicas especiales (1º/2º iteracion)
 
@@ -28,12 +28,14 @@ Cada tipo de barco/clase de barco tiene caracteristicas especiales (1º/2º iter
     - Escudo medio
 - Acorazado 4x1
     - Escudo pesado
-    - Lento, puede liberar minas subacuaticas
+    - Lento**, puede liberar minas subacuaticas**
 - Gran buque/Portaviones 3x2
     - Gran potencia de fuego, distancia de ataque aumentada, muy lento
     - Escudo medio
 
-Por cada casilla golpeada de un barco, aumenta el coste de movimiento por casilla (2 iteracion)
+**Por cada casilla golpeada de un barco, aumenta el coste de movimiento por casilla (2 iteracion)**
+
+Golpear cada casilla tiene un efecto distinto
 
 El mapa tendra obstáculos (2º iteracion)
 
@@ -53,4 +55,4 @@ Clases de armas (1º iteracion):
 
 Dentro de cada clase de arma habra armas especificas con diferentes daños y costes (2º iteracion)
 
-(opcional) Para cada clase de barco puede haber distintos cascos o barcos especificos con estadisticas diferentes (2º iteracion)
+Para cada clase de barco puede haber distintos cascos o barcos especificos con estadisticas diferentes (2º iteracion)
