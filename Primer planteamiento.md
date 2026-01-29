@@ -1,6 +1,12 @@
 # Idea de proyecto
 
-Batalla naval
+## Leyenda:
+
+Negrita: Rechazado
+Cursiva: En duda
+Resto: Aceptado
+
+## Mecanicas/Requisitos:
 
 Flota conformada por unidades hasta X puntos de armamento (final 1º iteracion - inicio 2º iteracion)
 
