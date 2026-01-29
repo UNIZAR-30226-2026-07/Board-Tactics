@@ -1,0 +1,33 @@
+# --- IDEs ---
+.idea/
+.vscode/
+*.swp
+*.iml
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+
+# --- Java / Maven ---
+target/
+*.class
+*.jar
+backend/.mvn/wrapper/maven-wrapper.properties
+
+# --- Node / React ---
+node_modules/
+dist/
+frontend/.env.local
+frontend/npm-debug.log*
+
+# --- Flutter / Dart ---
+mobile/.dart_tool/
+mobile/.packages
+mobile/build/
+mobile/pubspec.lock
+
+# --- Docker ---
+postgres_data/
+
+# --- Environment ---
+.env
